@@ -14,16 +14,11 @@ The repo is currently just the `create-next-app` scaffold (App Router, TypeScrip
 
 This project follows a spec-driven workflow using the `spec` and `spec-impl` skills (installed globally, see `~/.claude/skills/spec` and `~/.claude/skills/spec-impl`, sourced from https://github.com/Klerith/fernando-skills). Use `/spec` to draft a feature spec and `/spec-impl` to implement against an approved spec, rather than jumping straight to code for non-trivial features.
 
-## Commands
-
-```bash
-npm run dev     # start dev server (Turbopack)
-npm run build   # production build
-npm run start   # run production build
-npm run lint    # eslint
-```
-
 There is no test runner configured yet.
+
+### Skills
+
+Always use /frontend-design to design the user interface.
 
 ## Critical: this is Next.js 16, not the Next.js in your training data
 
