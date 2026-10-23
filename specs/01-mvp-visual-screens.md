@@ -1,6 +1,6 @@
 # SPEC 01 — MVP Visual Screens
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** None (first spec of the project)
 > **Date:** 2026-07-28
 > **Objective:** Implement the 5 Arcade Vault visual screens defined in `references/templates/` (Library, Detail, Player, Hall of Fame, Auth) as Next.js routes with mock data and client-side UI interactivity, without any playable game logic.
