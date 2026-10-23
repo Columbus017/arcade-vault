@@ -16,6 +16,9 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<FakeUser | null>(null);
 
   useEffect(() => {
+    // Reads localStorage after mount so SSR and the first client render match;
+    // logged-in users briefly see "SIGN IN" until this fires (accepted per spec).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setUser(getStoredUser());
   }, []);
 
