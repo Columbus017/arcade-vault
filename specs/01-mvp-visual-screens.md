@@ -97,26 +97,26 @@ Conventions:
 
 ## Acceptance criteria
 
-- [ ] `/` renders the Library screen with the hero, search input, category chips, and a card grid built from `lib/games.ts`.
-- [ ] Typing in the Library search input filters the grid by title (case-insensitive); no results shows the "NO RESULTS" empty state.
-- [ ] Clicking a category chip filters the grid to that category; "TODOS" shows all games.
-- [ ] Clicking a game card or its "PLAY" button navigates to `/juegos/[id]` for that game.
-- [ ] `/juegos/[id]` renders the game's cover, description, stat strip, and a 10-row leaderboard from `seededScores`.
-- [ ] `/juegos/unknown-id` returns a Next.js not-found response.
-- [ ] "PLAY NOW" on the Detail screen navigates to `/juegos/[id]/jugar`.
-- [ ] `/juegos/[id]/jugar` renders the CRT frame with fixed example HUD values (player, score, lives, level) and no score value changes on its own over time.
-- [ ] Clicking "PAUSE" on the Player screen shows the "EN PAUSA" overlay; clicking it again ("RESUME") hides it.
-- [ ] Clicking "FIN" on the Player screen opens the game-over modal with a fixed example final score.
-- [ ] Entering initials and clicking "SAVE SCORE" in the game-over modal writes an entry to `localStorage` under `av_scores` and replaces the input with the "▸ SCORE SAVED_" toast.
-- [ ] Clicking "PLAY AGAIN" in the game-over modal closes it and resets the Player screen to its fixed initial HUD values.
-- [ ] `/salon` renders a podium (top 3) and a ranking table for the selected game tab; switching tabs changes both to a different `seededScores` result.
-- [ ] `/auth` renders sign-in/sign-up tabs; submitting either form, or clicking "PLAY AS GUEST", logs the user in (or sets guest) and redirects to `/`.
-- [ ] After logging in via `/auth`, the Nav's auth button shows the entered username instead of "SIGN IN".
-- [ ] Reloading the page after logging in keeps the user logged in (Nav still shows the username), because `av_user` persisted in `localStorage`.
-- [ ] Clicking the logged-in Nav button signs the user out and the Nav reverts to "SIGN IN".
-- [ ] On `/salon`, a "your best score in [game]" row appears in the table only when a fake user is logged in.
-- [ ] Below 840px width, the Nav collapses to a hamburger button that opens the mobile slide-out panel.
-- [ ] `npm run build` completes with no TypeScript or ESLint errors.
+- [x] `/` renders the Library screen with the hero, search input, category chips, and a card grid built from `lib/games.ts`.
+- [x] Typing in the Library search input filters the grid by title (case-insensitive); no results shows the "NO RESULTS" empty state.
+- [x] Clicking a category chip filters the grid to that category; "TODOS" shows all games.
+- [x] Clicking a game card or its "PLAY" button navigates to `/juegos/[id]` for that game.
+- [x] `/juegos/[id]` renders the game's cover, description, stat strip, and a 10-row leaderboard from `seededScores`.
+- [x] `/juegos/unknown-id` returns a Next.js not-found response.
+- [x] "PLAY NOW" on the Detail screen navigates to `/juegos/[id]/jugar`.
+- [x] `/juegos/[id]/jugar` renders the CRT frame with fixed example HUD values (player, score, lives, level) and no score value changes on its own over time.
+- [x] Clicking "PAUSE" on the Player screen shows the "EN PAUSA" overlay; clicking it again ("RESUME") hides it.
+- [x] Clicking "FIN" on the Player screen opens the game-over modal with a fixed example final score.
+- [x] Entering initials and clicking "SAVE SCORE" in the game-over modal writes an entry to `localStorage` under `av_scores` and replaces the input with the "▸ SCORE SAVED_" toast.
+- [x] Clicking "PLAY AGAIN" in the game-over modal closes it and resets the Player screen to its fixed initial HUD values.
+- [x] `/salon` renders a podium (top 3) and a ranking table for the selected game tab; switching tabs changes both to a different `seededScores` result.
+- [x] `/auth` renders sign-in/sign-up tabs; submitting either form, or clicking "PLAY AS GUEST", logs the user in (or sets guest) and redirects to `/`.
+- [x] After logging in via `/auth`, the Nav's auth button shows the entered username instead of "SIGN IN".
+- [x] Reloading the page after logging in keeps the user logged in (Nav still shows the username), because `av_user` persisted in `localStorage`.
+- [x] Clicking the logged-in Nav button signs the user out and the Nav reverts to "SIGN IN".
+- [x] On `/salon`, a "your best score in [game]" row appears in the table only when a fake user is logged in.
+- [x] Below 840px width, the Nav collapses to a hamburger button that opens the mobile slide-out panel.
+- [x] `npm run build` completes with no TypeScript or ESLint errors.
 
 ## Decisions
 
