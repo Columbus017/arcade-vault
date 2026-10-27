@@ -106,3 +106,5 @@ export const PRICING_FAQ: FaqItem[] = [
     a: "Es un proyecto comunitario. Si te gusta, compártelo. Esa es toda la moneda que aceptamos.",
   },
 ];
+
+export const formatScore = (n: number) => n.toLocaleString("es-ES");
