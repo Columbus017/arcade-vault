@@ -1,5 +1,6 @@
 "use client";
 
+import { ActivitySection } from "@/components/home/ActivitySection";
 import { FeatureGrid } from "@/components/home/FeatureGrid";
 import { GamesRail } from "@/components/home/GamesRail";
 import { Hero } from "@/components/home/Hero";
@@ -14,6 +15,7 @@ export default function Home() {
       <FeatureGrid />
       <GamesRail />
       <StatsBand />
+      <ActivitySection />
     </div>
   );
 }
