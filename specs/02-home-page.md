@@ -99,30 +99,30 @@ Conventions:
 
 ## Acceptance criteria
 
-- [ ] `/` renders the Home page with all sections in order: hero, "¿POR QUÉ ARCADE VAULT?", "JUEGOS DISPONIBLES AHORA", stats band, "ACTIVIDAD EN VIVO", "PRECIOS", final CTA.
-- [ ] The hero shows the title "EL ARCADE CLÁSICO ESTÁ DE VUELTA", the 8 floating silhouettes, and the "EXPLORAR JUEGOS" and "CREAR CUENTA" buttons.
-- [ ] The feature grid renders 4 cards: JUEGOS CLÁSICOS, 100% GRATIS, LADDER BOARDS, SIEMPRE CRECIENDO.
-- [ ] The games rail renders exactly 6 mini-cards, taken from the first 6 entries of `GAMES`.
-- [ ] Clicking a mini-card navigates to `/juegos/[id]` for that game.
-- [ ] The stats band renders "12+", "MILES" and "GLOBAL" blocks.
-- [ ] "ÚLTIMAS PUNTUACIONES" renders 7 rows and "TOP JUGADORES · HOY" renders 5 rows, with `top1`, `top2` and `top3` classes on the first three.
-- [ ] Scores are formatted with `es-ES` thousands separators (for example `184.220`).
-- [ ] Sections with the `.reveal` class gain the `.in` class when they scroll into view.
-- [ ] "EXPLORAR JUEGOS", "VER TODOS LOS JUEGOS" and "INSERTAR MONEDA" navigate to `/biblioteca`.
-- [ ] "CREAR CUENTA" and "EMPEZAR GRATIS" navigate to `/auth`, including when a fake user is logged in.
-- [ ] "VER SALÓN →" navigates to `/salon`.
-- [ ] The pricing card shows "$0 / SIEMPRE", 6 list items and 3 FAQ entries.
-- [ ] `/biblioteca` renders the same Library screen that `/` rendered before this spec (search, category chips, card grid).
-- [ ] Library search and category filtering still work on `/biblioteca`.
-- [ ] The Nav shows Inicio, Biblioteca and Salón de la Fama, with no "Acerca de" link on desktop or in the mobile panel.
-- [ ] The Nav shows "CRÉDITOS · 03" on desktop and in the mobile panel footer.
-- [ ] "Inicio" is active only on `/`. "Biblioteca" is active on `/biblioteca` and on `/juegos/*`.
-- [ ] Below 840px, the Nav collapses to the hamburger and opens the mobile panel.
-- [ ] After login via `/auth`, the redirect lands on `/` (Home) and the Nav shows the username.
-- [ ] No link in the app points to `/` expecting the Library.
-- [ ] Existing screens (`/juegos/[id]`, `/juegos/[id]/jugar`, `/salon`, `/auth`) render unchanged after the CSS merge.
-- [ ] No console errors on `/`, `/biblioteca`, `/juegos/[id]`, `/salon` and `/auth`.
-- [ ] `npm run build` completes with no TypeScript or ESLint errors.
+- [x] `/` renders the Home page with all sections in order: hero, "¿POR QUÉ ARCADE VAULT?", "JUEGOS DISPONIBLES AHORA", stats band, "ACTIVIDAD EN VIVO", "PRECIOS", final CTA.
+- [x] The hero shows the title "EL ARCADE CLÁSICO ESTÁ DE VUELTA", the 8 floating silhouettes, and the "EXPLORAR JUEGOS" and "CREAR CUENTA" buttons.
+- [x] The feature grid renders 4 cards: JUEGOS CLÁSICOS, 100% GRATIS, LADDER BOARDS, SIEMPRE CRECIENDO.
+- [x] The games rail renders exactly 6 mini-cards, taken from the first 6 entries of `GAMES`.
+- [x] Clicking a mini-card navigates to `/juegos/[id]` for that game.
+- [x] The stats band renders "12+", "MILES" and "GLOBAL" blocks.
+- [x] "ÚLTIMAS PUNTUACIONES" renders 7 rows and "TOP JUGADORES · HOY" renders 5 rows, with `top1`, `top2` and `top3` classes on the first three.
+- [x] Scores are formatted with `es-ES` thousands separators (for example `184.220`).
+- [x] Sections with the `.reveal` class gain the `.in` class when they scroll into view.
+- [x] "EXPLORAR JUEGOS", "VER TODOS LOS JUEGOS" and "INSERTAR MONEDA" navigate to `/biblioteca`.
+- [x] "CREAR CUENTA" and "EMPEZAR GRATIS" navigate to `/auth`, including when a fake user is logged in.
+- [x] "VER SALÓN →" navigates to `/salon`.
+- [x] The pricing card shows "$0 / SIEMPRE", 6 list items and 3 FAQ entries.
+- [x] `/biblioteca` renders the same Library screen that `/` rendered before this spec (search, category chips, card grid).
+- [x] Library search and category filtering still work on `/biblioteca`.
+- [x] The Nav shows Inicio, Biblioteca and Salón de la Fama, with no "Acerca de" link on desktop or in the mobile panel.
+- [x] The Nav shows "CRÉDITOS · 03" on desktop and in the mobile panel footer.
+- [x] "Inicio" is active only on `/`. "Biblioteca" is active on `/biblioteca` and on `/juegos/*`.
+- [x] Below 840px, the Nav collapses to the hamburger and opens the mobile panel.
+- [x] After login via `/auth`, the redirect lands on `/` (Home) and the Nav shows the username.
+- [x] No link in the app points to `/` expecting the Library.
+- [x] Existing screens (`/juegos/[id]`, `/juegos/[id]/jugar`, `/salon`, `/auth`) render unchanged after the CSS merge.
+- [x] No console errors on `/`, `/biblioteca`, `/juegos/[id]`, `/salon` and `/auth`.
+- [x] `npm run build` completes with no TypeScript or ESLint errors.
 
 ## Decisions
 
