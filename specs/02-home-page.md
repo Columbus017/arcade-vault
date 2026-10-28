@@ -1,6 +1,6 @@
 # SPEC 02 — Home Page
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** SPEC 01
 > **Date:** 2026-10-23
 > **Objective:** Implement the Arcade Vault landing page at `/` from `references/templates/home-about/home.jsx`, move the Library to `/biblioteca`, and update the Nav to match the new template.
