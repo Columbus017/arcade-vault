@@ -1,6 +1,6 @@
 # SPEC 03 — About Page + Contact Email
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** SPEC 02 (Nav, `hooks/useReveal.ts`, home CSS base)
 > **Date:** 2026-11-03
 > **Objective:** Implement the About + Contact page at `/about` from `references/templates/home-about/about.jsx`, with the contact form sending a real email to the team inbox via Resend through a Server Action.
