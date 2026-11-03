@@ -1,23 +1,39 @@
 "use client";
 
-import { useState } from "react";
-import { validateContact } from "@/lib/contact";
+import { useActionState, useEffect, useState } from "react";
+import { sendContactMessage } from "@/app/about/actions";
+import { validateContact, type ContactResult } from "@/lib/contact";
 
 const EMPTY = { name: "", email: "", msg: "", website: "" };
+const IDLE: ContactResult = { status: "idle" };
 
 export function ContactForm() {
   const [form, setForm] = useState(EMPTY);
-  const [sent, setSent] = useState<string | null>(null);
+  const [state, formAction, pending] = useActionState(sendContactMessage, IDLE);
   const [shake, setShake] = useState(false);
+  const [seen, setSeen] = useState(state);
+  const [dismissed, setDismissed] = useState<ContactResult | null>(null);
 
+  // Each action result is a new object: shake once per server error.
+  if (state !== seen) {
+    setSeen(state);
+    if (state.status === "error") setShake(true);
+  }
+
+  useEffect(() => {
+    if (!shake) return;
+    const t = setTimeout(() => setShake(false), 400);
+    return () => clearTimeout(t);
+  }, [shake]);
+
+  const sent = state.status === "success" && state !== dismissed ? state.name : null;
+
+  // Invalid input never reaches the server action.
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     if (validateContact(form) !== null) {
+      e.preventDefault();
       setShake(true);
-      setTimeout(() => setShake(false), 400);
-      return;
     }
-    setSent(form.name.trim());
   };
 
   return (
@@ -45,6 +61,7 @@ export function ContactForm() {
 
         <form
           className={"contact-form" + (shake ? " shake" : "")}
+          action={formAction}
           onSubmit={onSubmit}
           noValidate
         >
@@ -91,8 +108,18 @@ export function ContactForm() {
                 aria-hidden="true"
                 style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
               />
-              <button className="btn xl press" type="submit" style={{ width: "100%" }}>
-                ▶&nbsp;&nbsp;ENVIAR MENSAJE
+              {state.status === "error" && (
+                <p className="contact-error" role="alert">
+                  ✖ ERROR DE TRANSMISIÓN. INTÉNTALO DE NUEVO.
+                </p>
+              )}
+              <button
+                className="btn xl press"
+                type="submit"
+                disabled={pending}
+                style={{ width: "100%" }}
+              >
+                {pending ? "▶\u00a0\u00a0TRANSMITIENDO…" : "▶\u00a0\u00a0ENVIAR MENSAJE"}
               </button>
             </>
           ) : (
@@ -119,7 +146,7 @@ export function ContactForm() {
                     className="btn ghost"
                     type="button"
                     onClick={() => {
-                      setSent(null);
+                      setDismissed(state);
                       setForm(EMPTY);
                     }}
                   >
