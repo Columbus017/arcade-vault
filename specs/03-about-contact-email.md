@@ -109,26 +109,26 @@ Conventions:
 
 ## Acceptance criteria
 
-- [ ] `/about` renders, in order: hero (kicker "▸ ACERCA DE", title "ACERCA DE ARCADE VAULT", mission paragraph), 3 highlights, pixel divider, contact section.
-- [ ] Highlights render 3 cards with HEART/magenta, BROWSER/cyan, PLANT/green pixel icons and the template copy verbatim.
-- [ ] The divider renders 24 animated pixels.
-- [ ] Sections with `.reveal` gain `.in` when scrolled into view.
-- [ ] Contact intro shows "CONTÁCTANOS", the subtitle and 3 tips (RESPUESTA EN 24-48H, SUGERENCIAS BIENVENIDAS, SIN SPAM, JAMÁS).
-- [ ] Form shows NOMBRE, CORREO ELECTRÓNICO, MENSAJE with template placeholders and the "▶  ENVIAR MENSAJE" button.
-- [ ] Submitting with any empty field shakes the form and sends no request.
-- [ ] While pending, the button is disabled and reads "▶  TRANSMITIENDO…".
+- [x] `/about` renders, in order: hero (kicker "▸ ACERCA DE", title "ACERCA DE ARCADE VAULT", mission paragraph), 3 highlights, pixel divider, contact section.
+- [x] Highlights render 3 cards with HEART/magenta, BROWSER/cyan, PLANT/green pixel icons and the template copy verbatim.
+- [x] The divider renders 24 animated pixels.
+- [x] Sections with `.reveal` gain `.in` when scrolled into view.
+- [x] Contact intro shows "CONTÁCTANOS", the subtitle and 3 tips (RESPUESTA EN 24-48H, SUGERENCIAS BIENVENIDAS, SIN SPAM, JAMÁS).
+- [x] Form shows NOMBRE, CORREO ELECTRÓNICO, MENSAJE with template placeholders and the "▶  ENVIAR MENSAJE" button.
+- [x] Submitting with any empty field shakes the form and sends no request.
+- [x] While pending, the button is disabled and reads "▶  TRANSMITIENDO…".
 - [ ] Valid submit with correct env delivers one email to `CONTACT_TO_EMAIL` with subject `[Arcade Vault] Nuevo mensaje de {name}`, `replyTo` = submitted email, body containing name, email and message.
 - [ ] HTML in the message (e.g. `<b>x</b>`) appears escaped in the email, not rendered.
-- [ ] On success, the terminal screen shows `GRACIAS, {NAME}.` (uppercased); "ENVIAR OTRO MENSAJE" returns an empty form.
-- [ ] Without `RESEND_API_KEY`, submit shows the error line `✖ ERROR DE TRANSMISIÓN. INTÉNTALO DE NUEVO.`, form shakes, fields stay filled, server logs `RESEND_API_KEY missing`.
-- [ ] Server rejects invalid email format or over-limit fields (name >80, email >254, msg >2000) with the error state and no email sent.
-- [ ] Filling the honeypot `website` field returns the success screen and sends no email.
-- [ ] `RESEND_API_KEY` never appears in client bundles (action file is `"use server"`, no `NEXT_PUBLIC_` prefix).
-- [ ] `.env.example` is committed with the 3 vars; `.env.local` is gitignored.
-- [ ] Nav shows "Acerca de" on desktop and mobile panel, linking to `/about`, active only on `/about`.
-- [ ] Below 900px the contact grid stacks; below 820px highlights stack to 1 column.
-- [ ] Existing routes (`/`, `/biblioteca`, `/juegos/[id]`, `/juegos/[id]/jugar`, `/salon`, `/auth`) render unchanged after the CSS merge.
-- [ ] No console errors on `/about`.
+- [x] On success, the terminal screen shows `GRACIAS, {NAME}.` (uppercased); "ENVIAR OTRO MENSAJE" returns an empty form.
+- [x] Without `RESEND_API_KEY`, submit shows the error line `✖ ERROR DE TRANSMISIÓN. INTÉNTALO DE NUEVO.`, form shakes, fields stay filled, server logs `RESEND_API_KEY missing`.
+- [x] Server rejects invalid email format or over-limit fields (name >80, email >254, msg >2000) with the error state and no email sent.
+- [x] Filling the honeypot `website` field returns the success screen and sends no email.
+- [x] `RESEND_API_KEY` never appears in client bundles (action file is `"use server"`, no `NEXT_PUBLIC_` prefix).
+- [x] `.env.example` is committed with the 3 vars; `.env.local` is gitignored.
+- [x] Nav shows "Acerca de" on desktop and mobile panel, linking to `/about`, active only on `/about`.
+- [x] Below 900px the contact grid stacks; below 820px highlights stack to 1 column.
+- [x] Existing routes (`/`, `/biblioteca`, `/juegos/[id]`, `/juegos/[id]/jugar`, `/salon`, `/auth`) render unchanged after the CSS merge.
+- [x] No console errors on `/about`.
 - [ ] `npm run build` and `npm run lint` pass with no errors.
 
 ## Decisions
