@@ -1,5 +1,6 @@
 "use client";
 
+import { ContactForm } from "@/components/about/ContactForm";
 import { HighlightIcon } from "@/components/about/HighlightIcon";
 import { HIGHLIGHTS } from "@/lib/about";
 import { useReveal } from "@/hooks/useReveal";
@@ -40,6 +41,8 @@ export default function AboutPage() {
         </div>
         <div className="div-bar"></div>
       </div>
+
+      <ContactForm />
     </div>
   );
 }
