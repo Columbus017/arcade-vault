@@ -1,6 +1,6 @@
 # SPEC 05 — Asteroids playable game
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** SPEC 01
 > **Date:** 2026-1-09
 > **Objective:** Port the vanilla-canvas Asteroids from `references/started-games/02-asteroids/` to a TypeScript engine, add it to the catalog as a new game `asteroids`, and make it playable at `/juegos/asteroids/jugar` inside the existing player screen.
@@ -133,28 +133,28 @@ Conventions:
 
 ## Acceptance criteria
 
-- [ ] `/biblioteca` shows an ASTEROIDS card, and it appears under the SHOOTER filter and in search for "asteroids".
-- [ ] `rocas` is still in the catalog, unchanged, and `/juegos/rocas/jugar` still shows the mock arena.
-- [ ] `/juegos/asteroids` renders the detail page with title, description and a button to `/juegos/asteroids/jugar`.
-- [ ] `/juegos/asteroids/jugar` renders an 800×600 canvas inside the CRT frame, and the game starts on load with 4 large asteroids, 3 lives, level 1 and score 0.
-- [ ] ArrowLeft / ArrowRight rotate the ship, ArrowUp thrusts, Space shoots (one bullet per press, 0.2 s cooldown).
-- [ ] The ship and bullets wrap around all four canvas edges.
-- [ ] Pressing Space or an arrow key while playing does not scroll the page.
-- [ ] Shooting a large, medium or small asteroid adds exactly 20, 50 or 100 points. Large and medium split into 2 asteroids of the next smaller size, small ones don't split.
-- [ ] Clearing all asteroids starts level `n + 1` with `3 + (n + 1)` large asteroids and resets the ship to the center.
-- [ ] A ship-asteroid collision costs 1 life, and the ship respawns after 2 s with 3 s of blinking invincibility.
-- [ ] A power-up drops at most once per level, appears after 5 kills at the latest, and picking it up enables a 3-bullet spread for 5 s.
-- [ ] The HUD in `PlayerScreen` shows the live score (formatted `es-ES`), lives, level and, while active, the 3x seconds left.
-- [ ] The canvas draws no HUD text and no "GAME OVER" overlay.
-- [ ] At 0 lives the game-over modal opens with the final score.
-- [ ] "GUARDAR PUNTUACIÓN" writes `{ game: "asteroids", score, name, at }` to `localStorage["av_scores"]`.
-- [ ] "JUGAR DE NUEVO" closes the modal and starts a fresh game (score 0, lives 3, level 1).
-- [ ] PAUSA freezes the game and REANUDAR resumes it. FIN pauses and opens the modal with the current score.
-- [ ] Switching to another tab pauses the game, and it stays paused until REANUDAR.
-- [ ] Leaving the page (SALIR or navigation) removes the key listeners and stops the loop (no console errors, no duplicated input after re-entering).
-- [ ] The canvas scales down to fit the CRT container at 390 px width and keeps its 4:3 ratio.
-- [ ] The 7 other games' player pages render exactly as before.
-- [ ] No console errors on `/biblioteca`, `/juegos/asteroids`, `/juegos/asteroids/jugar` and `/salon`.
+- [x] `/biblioteca` shows an ASTEROIDS card, and it appears under the SHOOTER filter and in search for "asteroids".
+- [x] `rocas` is still in the catalog, unchanged, and `/juegos/rocas/jugar` still shows the mock arena.
+- [x] `/juegos/asteroids` renders the detail page with title, description and a button to `/juegos/asteroids/jugar`.
+- [x] `/juegos/asteroids/jugar` renders an 800×600 canvas inside the CRT frame, and the game starts on load with 4 large asteroids, 3 lives, level 1 and score 0.
+- [x] ArrowLeft / ArrowRight rotate the ship, ArrowUp thrusts, Space shoots (one bullet per press, 0.2 s cooldown).
+- [x] The ship and bullets wrap around all four canvas edges.
+- [x] Pressing Space or an arrow key while playing does not scroll the page.
+- [x] Shooting a large, medium or small asteroid adds exactly 20, 50 or 100 points. Large and medium split into 2 asteroids of the next smaller size, small ones don't split.
+- [x] Clearing all asteroids starts level `n + 1` with `3 + (n + 1)` large asteroids and resets the ship to the center.
+- [x] A ship-asteroid collision costs 1 life, and the ship respawns after 2 s with 3 s of blinking invincibility.
+- [x] A power-up drops at most once per level, appears after 5 kills at the latest, and picking it up enables a 3-bullet spread for 5 s.
+- [x] The HUD in `PlayerScreen` shows the live score (formatted `es-ES`), lives, level and, while active, the 3x seconds left.
+- [x] The canvas draws no HUD text and no "GAME OVER" overlay.
+- [x] At 0 lives the game-over modal opens with the final score.
+- [x] "GUARDAR PUNTUACIÓN" writes `{ game: "asteroids", score, name, at }` to `localStorage["av_scores"]`.
+- [x] "JUGAR DE NUEVO" closes the modal and starts a fresh game (score 0, lives 3, level 1).
+- [x] PAUSA freezes the game and REANUDAR resumes it. FIN pauses and opens the modal with the current score.
+- [x] Switching to another tab pauses the game, and it stays paused until REANUDAR.
+- [x] Leaving the page (SALIR or navigation) removes the key listeners and stops the loop (no console errors, no duplicated input after re-entering).
+- [x] The canvas scales down to fit the CRT container at 390 px width and keeps its 4:3 ratio.
+- [x] The 7 other games' player pages render exactly as before.
+- [x] No console errors on `/biblioteca`, `/juegos/asteroids`, `/juegos/asteroids/jugar` and `/salon`.
 - [ ] `npm run lint` and `npm run build` pass with no errors.
 
 ## Decisions
