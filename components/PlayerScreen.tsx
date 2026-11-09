@@ -27,11 +27,15 @@ export function PlayerScreen({ game }: { game: Game }) {
   const [name, setName] = useState(user ? user.name : "INVITADO");
   const [saved, setSaved] = useState(false);
 
-  const endGame = () => setOver(true);
+  const endGame = () => {
+    if (GameCanvas) setPaused(true); // other games keep their previous FIN behavior
+    setOver(true);
+  };
   const restart = () => {
     setPaused(false);
     setOver(false);
     setSaved(false);
+    setRestartKey((k) => k + 1);
   };
 
   return (
@@ -66,10 +70,22 @@ export function PlayerScreen({ game }: { game: Game }) {
           )}
         </div>
         <div className="hud-actions">
-          <button className="btn yellow" onClick={() => setPaused((p) => !p)}>
+          <button
+            className="btn yellow"
+            onClick={(e) => {
+              e.currentTarget.blur(); // keep Space from re-triggering the button
+              setPaused((p) => !p);
+            }}
+          >
             {paused ? "REANUDAR" : "PAUSA"}
           </button>
-          <button className="btn magenta" onClick={endGame}>
+          <button
+            className="btn magenta"
+            onClick={(e) => {
+              e.currentTarget.blur();
+              endGame();
+            }}
+          >
             FIN
           </button>
           <Link href={`/juegos/${game.id}`} className="btn ghost">
@@ -83,7 +99,7 @@ export function PlayerScreen({ game }: { game: Game }) {
           {GameCanvas ? (
             <GameCanvas
               onState={setLive}
-              onGameOver={() => {}}
+              onGameOver={() => setOver(true)}
               paused={paused}
               restartKey={restartKey}
             />
