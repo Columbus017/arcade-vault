@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Game } from "@/lib/games";
+import { GAME_CANVASES } from "@/lib/games/registry";
+import type { AsteroidsState } from "@/lib/games/asteroids/types";
 import { pushStoredScore } from "@/lib/auth";
 import { useUser } from "@/components/UserProvider";
 
@@ -12,9 +14,14 @@ const INITIAL_LEVEL = 4;
 
 export function PlayerScreen({ game }: { game: Game }) {
   const { user } = useUser();
-  const [score] = useState(INITIAL_SCORE);
-  const [lives] = useState(INITIAL_LIVES);
-  const [level] = useState(INITIAL_LEVEL);
+  const GameCanvas = GAME_CANVASES[game.id];
+  const [live, setLive] = useState<AsteroidsState | null>(null);
+  const [restartKey, setRestartKey] = useState(0);
+  // Registered games drive the HUD from engine state; the rest keep the mock values.
+  const score = GameCanvas ? (live?.score ?? 0) : INITIAL_SCORE;
+  const lives = GameCanvas ? (live?.lives ?? INITIAL_LIVES) : INITIAL_LIVES;
+  const level = GameCanvas ? (live?.level ?? 1) : INITIAL_LEVEL;
+  const tripleShot = GameCanvas ? (live?.tripleShot ?? 0) : 0;
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [name, setName] = useState(user ? user.name : "INVITADO");
@@ -49,6 +56,14 @@ export function PlayerScreen({ game }: { game: Game }) {
             <div className="l">Nivel</div>
             <div className="v">{String(level).padStart(2, "0")}</div>
           </div>
+          {tripleShot > 0 && (
+            <div className="hud-stat">
+              <div className="l">3x</div>
+              <div className="v" style={{ color: "var(--cyan)" }}>
+                {tripleShot.toFixed(1)}s
+              </div>
+            </div>
+          )}
         </div>
         <div className="hud-actions">
           <button className="btn yellow" onClick={() => setPaused((p) => !p)}>
@@ -65,13 +80,22 @@ export function PlayerScreen({ game }: { game: Game }) {
 
       <div className="crt">
         <div className="crt-screen">
-          <div className="game-arena">
-            <div className="grid-floor"></div>
-            <div className="enemy e1"></div>
-            <div className="enemy e2"></div>
-            <div className="enemy e3"></div>
-            <div className="player-ship"></div>
-          </div>
+          {GameCanvas ? (
+            <GameCanvas
+              onState={setLive}
+              onGameOver={() => {}}
+              paused={paused}
+              restartKey={restartKey}
+            />
+          ) : (
+            <div className="game-arena">
+              <div className="grid-floor"></div>
+              <div className="enemy e1"></div>
+              <div className="enemy e2"></div>
+              <div className="enemy e3"></div>
+              <div className="player-ship"></div>
+            </div>
+          )}
           {paused && (
             <div className="crt-content" style={{ background: "rgba(0,0,0,0.6)", zIndex: 5 }}>
               <div>
