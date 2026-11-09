@@ -1,6 +1,6 @@
 # SPEC 04 — Supabase installation and configuration
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** None (follows the `.env.example` convention from SPEC 03)
 > **Date:** 2026-11-09
 > **Objective:** Install `@supabase/supabase-js` and `@supabase/ssr`, configure env vars, and add browser and server client factories, verified by a temporary connection check.
@@ -68,17 +68,17 @@ Conventions:
 
 ## Acceptance criteria
 
-- [ ] `package.json` lists `@supabase/supabase-js` and `@supabase/ssr` in `dependencies`.
-- [ ] `.env.example` contains `NEXT_PUBLIC_SUPABASE_URL=` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=` with empty values.
-- [ ] `.env.local` contains both vars with real values and is gitignored (`git status` does not list it).
-- [ ] `lib/supabase/client.ts` and `lib/supabase/server.ts` exist, each exporting `createClient`.
-- [ ] Both factories throw a clear error when an env var is missing (verified by temporarily unsetting one).
-- [ ] The temporary connection check using the server client returns a response from Supabase with no auth/URL/key error.
-- [ ] The temporary check file/route is deleted and absent from the final diff.
-- [ ] No Supabase key other than the publishable key appears in the repo or client bundle (no service-role key, no DB password in `NEXT_PUBLIC_*`).
-- [ ] `proxy.ts`, `supabase/` directory, and `database.types.ts` do not exist.
-- [ ] Existing routes (`/`, `/biblioteca`, `/juegos/[id]`, `/juegos/[id]/jugar`, `/salon`, `/auth`, `/about`) render unchanged, with no console errors.
-- [ ] `npm run build` and `npm run lint` pass with no errors.
+- [x] `package.json` lists `@supabase/supabase-js` and `@supabase/ssr` in `dependencies`.
+- [x] `.env.example` contains `NEXT_PUBLIC_SUPABASE_URL=` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=` with empty values.
+- [x] `.env.local` contains both vars with real values and is gitignored (`git status` does not list it).
+- [x] `lib/supabase/client.ts` and `lib/supabase/server.ts` exist, each exporting `createClient`.
+- [x] Both factories throw a clear error when an env var is missing (verified by temporarily unsetting one).
+- [x] The temporary connection check using the server client returns a response from Supabase with no auth/URL/key error.
+- [x] The temporary check file/route is deleted and absent from the final diff.
+- [x] No Supabase key other than the publishable key appears in the repo or client bundle (no service-role key, no DB password in `NEXT_PUBLIC_*`).
+- [x] `proxy.ts`, `supabase/` directory, and `database.types.ts` do not exist.
+- [x] Existing routes (`/`, `/biblioteca`, `/juegos/[id]`, `/juegos/[id]/jugar`, `/salon`, `/auth`, `/about`) render unchanged, with no console errors.
+- [x] `npm run build` and `npm run lint` pass with no errors.
 
 ## Decisions
 
