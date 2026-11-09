@@ -6,14 +6,20 @@ import { H, W } from "@/lib/games/asteroids/constants";
 import type { AsteroidsEngine } from "@/lib/games/asteroids/types";
 import type { GameCanvasProps } from "@/lib/games/registry";
 
-export function AsteroidsCanvas({ onState, onGameOver, paused, restartKey }: GameCanvasProps) {
+export function AsteroidsCanvas({
+  onState,
+  onGameOver,
+  paused,
+  restartKey,
+  onPauseRequest,
+}: GameCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<AsteroidsEngine | null>(null);
-  const cbRef = useRef({ onState, onGameOver });
+  const cbRef = useRef({ onState, onGameOver, onPauseRequest });
   const lastRestartKey = useRef(restartKey);
 
   useEffect(() => {
-    cbRef.current = { onState, onGameOver };
+    cbRef.current = { onState, onGameOver, onPauseRequest };
   });
 
   // Create the engine once per mount; destroy on unmount (also covers Strict Mode double effects).
@@ -38,6 +44,20 @@ export function AsteroidsCanvas({ onState, onGameOver, paused, restartKey }: Gam
     if (paused) engine.pause();
     else engine.resume();
   }, [paused]);
+
+  // Auto-pause when the tab/window loses focus. Resume only happens via the host (REANUDAR).
+  useEffect(() => {
+    const request = () => cbRef.current.onPauseRequest?.();
+    const onVisibility = () => {
+      if (document.hidden) request();
+    };
+    window.addEventListener("blur", request);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("blur", request);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
 
   // Bump restartKey to restart.
   useEffect(() => {

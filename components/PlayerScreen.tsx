@@ -102,6 +102,7 @@ export function PlayerScreen({ game }: { game: Game }) {
               onGameOver={() => setOver(true)}
               paused={paused}
               restartKey={restartKey}
+              onPauseRequest={() => setPaused(true)}
             />
           ) : (
             <div className="game-arena">

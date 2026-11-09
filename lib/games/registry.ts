@@ -7,6 +7,7 @@ export interface GameCanvasProps {
   onGameOver: (finalScore: number) => void;
   paused: boolean;
   restartKey: number; // bump to restart
+  onPauseRequest?: () => void; // canvas asks the host to pause (tab blur / hidden)
 }
 
 export const GAME_CANVASES: Record<string, ComponentType<GameCanvasProps>> = {
