@@ -101,6 +101,17 @@ export const GAMES: Game[] = [
     best: 24,
     plays: "4.2K",
   },
+  {
+    id: "asteroids",
+    title: "ASTEROIDS",
+    short: "Destroza asteroides y sobrevive el mayor tiempo posible.",
+    long: "Pilota tu nave en un campo de asteroides sin fin. Rota, acelera y dispara para partir las rocas en fragmentos cada vez más pequeños. Recoge el disparo triple para limpiar el campo más rápido y avanza de nivel antes de quedarte sin vidas.",
+    cat: "SHOOTER",
+    cover: "cover-asteroids",
+    color: "cyan",
+    best: 0,
+    plays: "0",
+  },
 ];
 
 export const CATS: ("TODOS" | GameCategory)[] = ["TODOS", "ARCADE", "PUZZLE", "SHOOTER", "VERSUS"];
