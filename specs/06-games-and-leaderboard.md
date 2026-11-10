@@ -1,6 +1,6 @@
 # SPEC 06 — Games table and per-game leaderboard
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** SPEC 04, SPEC 05
 > **Date:** 2026-11-10
 > **Objective:** Create Supabase `games` and `scores` tables, save scores from the player screen to Supabase, and show a real per-game top-10 leaderboard on `/salon`.
