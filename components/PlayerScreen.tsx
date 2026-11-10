@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import type { Game } from "@/lib/games";
 import { GAME_CANVASES } from "@/lib/games/registry";
 import type { AsteroidsState } from "@/lib/games/asteroids/types";
 import { pushStoredScore } from "@/lib/auth";
+import { submitScore } from "@/lib/scores";
 import { useUser } from "@/components/UserProvider";
 
 const INITIAL_SCORE = 45820;
@@ -26,6 +27,27 @@ export function PlayerScreen({ game }: { game: Game }) {
   const [over, setOver] = useState(false);
   const [name, setName] = useState(user ? user.name : "INVITADO");
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const fallbackWritten = useRef(false);
+
+  const save = async () => {
+    if (saving) return;
+    setSaving(true);
+    setSaveError(null);
+    const res = await submitScore({ gameId: game.id, playerName: name, score });
+    if (res.ok) {
+      setSaved(true);
+    } else {
+      // Write the localStorage fallback once, even if the user retries.
+      if (!fallbackWritten.current) {
+        pushStoredScore({ game: game.id, score, name });
+        fallbackWritten.current = true;
+      }
+      setSaveError("NO SE PUDO GUARDAR EN EL SERVIDOR. COPIA LOCAL GUARDADA. REINTENTA.");
+    }
+    setSaving(false);
+  };
 
   const endGame = () => {
     if (GameCanvas) setPaused(true); // other games keep their previous FIN behavior
@@ -35,6 +57,9 @@ export function PlayerScreen({ game }: { game: Game }) {
     setPaused(false);
     setOver(false);
     setSaved(false);
+    setSaving(false);
+    setSaveError(null);
+    fallbackWritten.current = false;
     setRestartKey((k) => k + 1);
   };
 
@@ -149,19 +174,14 @@ export function PlayerScreen({ game }: { game: Game }) {
                   onChange={(e) => setName(e.target.value.toUpperCase().slice(0, 10))}
                   placeholder="TUS INICIALES"
                 />
-                <button
-                  className="btn yellow"
-                  onClick={() => {
-                    pushStoredScore({ game: game.id, score, name });
-                    setSaved(true);
-                  }}
-                >
+                <button className="btn yellow" disabled={saving} onClick={save}>
                   GUARDAR PUNTUACIÓN
                 </button>
               </div>
             ) : (
               <div className="toast-saved">▸ PUNTUACIÓN GUARDADA_</div>
             )}
+            {saveError && !saved && <p className="contact-error">{saveError}</p>}
             <div className="actions">
               <button className="btn" onClick={restart}>
                 JUGAR DE NUEVO
