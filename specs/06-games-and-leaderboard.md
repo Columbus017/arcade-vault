@@ -105,26 +105,26 @@ Conventions:
 
 ## Acceptance criteria
 
-- [ ] `list_tables` shows `games` and `scores` in `public`, both with RLS enabled.
-- [ ] `games` contains exactly the 9 catalog ids (`bloque-buster`, `caida`, `serpentina`, `gloton`, `invasores`, `rocas`, `ranaria`, `duelo-pixel`, `asteroids`).
-- [ ] `get_advisors` (security) reports no RLS-disabled or missing-policy warning for `games` / `scores`.
-- [ ] With the publishable key, `select` on `games` and `scores` succeeds, `insert` on `scores` succeeds, and `update` / `delete` on `scores` affect 0 rows or are rejected.
-- [ ] Inserting a score with `score < 0`, an empty `player_name`, a name longer than 16 chars, or an unknown `game_id` is rejected by the DB.
-- [ ] `/salon` shows no fake data: `seededScores` is no longer used and the fake "your rank" block is gone.
-- [ ] `/salon` with no scores for a game shows the empty state text for that tab.
-- [ ] `/salon` shows scores for the selected game only, ordered by score descending, max 10 rows.
-- [ ] Two scores with the same value are ordered by earlier `created_at` first.
-- [ ] The podium renders correctly with 0, 1, 2 and 3+ rows (no crash, no `undefined` text).
-- [ ] If the Supabase request fails (e.g. offline), `/salon` shows an error state with a retry button, and retry reloads the data.
-- [ ] Saving a score from `/juegos/asteroids/jugar` inserts one row in `scores` with the right `game_id`, `player_name`, `score` and `user_id` null.
-- [ ] The saved Asteroids score appears in `/salon` under ASTEROIDS after saving, without manual DB edits.
-- [ ] Saving a score from another game (e.g. `rocas`) inserts a row with that game's `game_id`.
-- [ ] The "GUARDAR PUNTUACIÓN" button is disabled while the request is in flight (no duplicate rows on double click).
-- [ ] When `submitScore()` fails, the score is written to `localStorage["av_scores"]` and an error message is shown.
-- [ ] Scores are shown with `es-ES` number format and `es-ES` date format.
-- [ ] No test rows remain in `scores` after verification.
-- [ ] No console errors on `/salon`, `/biblioteca`, `/juegos/asteroids` and `/juegos/asteroids/jugar`.
-- [ ] `npm run lint` and `npm run build` pass with no errors.
+- [x] `list_tables` shows `games` and `scores` in `public`, both with RLS enabled.
+- [x] `games` contains exactly the 9 catalog ids (`bloque-buster`, `caida`, `serpentina`, `gloton`, `invasores`, `rocas`, `ranaria`, `duelo-pixel`, `asteroids`).
+- [x] `get_advisors` (security) reports no RLS-disabled or missing-policy warning for `games` / `scores`.
+- [x] With the publishable key, `select` on `games` and `scores` succeeds, `insert` on `scores` succeeds, and `update` / `delete` on `scores` affect 0 rows or are rejected.
+- [x] Inserting a score with `score < 0`, an empty `player_name`, a name longer than 16 chars, or an unknown `game_id` is rejected by the DB.
+- [x] `/salon` shows no fake data: `seededScores` is no longer used and the fake "your rank" block is gone.
+- [x] `/salon` with no scores for a game shows the empty state text for that tab.
+- [x] `/salon` shows scores for the selected game only, ordered by score descending, max 10 rows.
+- [x] Two scores with the same value are ordered by earlier `created_at` first.
+- [x] The podium renders correctly with 0, 1, 2 and 3+ rows (no crash, no `undefined` text).
+- [x] If the Supabase request fails (e.g. offline), `/salon` shows an error state with a retry button, and retry reloads the data.
+- [x] Saving a score from `/juegos/asteroids/jugar` inserts one row in `scores` with the right `game_id`, `player_name`, `score` and `user_id` null.
+- [x] The saved Asteroids score appears in `/salon` under ASTEROIDS after saving, without manual DB edits.
+- [x] Saving a score from another game (e.g. `rocas`) inserts a row with that game's `game_id`.
+- [x] The "GUARDAR PUNTUACIÓN" button is disabled while the request is in flight (no duplicate rows on double click).
+- [x] When `submitScore()` fails, the score is written to `localStorage["av_scores"]` and an error message is shown.
+- [x] Scores are shown with `es-ES` number format and `es-ES` date format.
+- [x] No test rows remain in `scores` after verification.
+- [x] No console errors on `/salon`, `/biblioteca`, `/juegos/asteroids` and `/juegos/asteroids/jugar`.
+- [x] `npm run lint` and `npm run build` pass with no errors.
 
 ## Decisions
 
